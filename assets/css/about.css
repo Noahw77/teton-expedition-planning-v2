@@ -55,3 +55,65 @@
 
 /* Partnership / values cards */
 .values .card{padding:22px}
+
+/* === Uniform bio layout + hover (applies to all six) === */
+.bio-grid{display:grid;gap:26px}
+.bio{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  align-items:stretch;
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid #23283a;
+  box-shadow:var(--shadow);
+  transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.bio:hover{
+  transform:translateY(-4px);
+  border-color:color-mix(in oklab, var(--accent), white 12%);
+  box-shadow:0 14px 40px rgba(0,0,0,.45);
+}
+.bio .img{position:relative;min-height:260px}
+.bio .img img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(1.05) contrast(1.02);
+  transition:transform var(--dur) var(--ease), filter var(--dur) var(--ease);
+}
+.bio:hover .img img{
+  transform:scale(1.02);
+  filter:saturate(1.1) contrast(1.05);
+}
+.bio .copy{
+  padding:22px;
+  background:linear-gradient(180deg, #171b25, #121520);
+}
+.bio h3{margin-bottom:8px}
+.bio .role{
+  font-family:Montserrat, system-ui, sans-serif;
+  color:var(--muted);
+  font-size:13px;margin-bottom:8px;
+  letter-spacing:.04em;text-transform:uppercase
+}
+.bio p{color:var(--muted)}
+
+/* Alternating layout & subtle accents */
+.bio:nth-child(even) .img{order:2}
+.bio:nth-child(odd) .img{order:1}
+.bio:nth-child(odd) .copy{
+  background:
+    radial-gradient(900px 60% at 80% -10%, rgba(176,141,87,.08), transparent 40%),
+    #141824;
+}
+.bio:nth-child(even) .copy{
+  background:
+    radial-gradient(900px 60% at 20% 110%, rgba(176,141,87,.07), transparent 40%),
+    #111421;
+}
+
+/* Mobile: stack image over text */
+@media (max-width:900px){
+  .bio{grid-template-columns:1fr}
+  .bio:nth-child(even) .img{order:1}
+}
